@@ -12,6 +12,10 @@ bool isValueOutOfRange (float value, float min, float max, int index_param)
   {
     cout << parameter[index_param] << "is out of range "<<endl;
   }
+  else
+  {
+    cout << parameter[index_param] << "is okay "<<endl;
+  }
   return valueOutOfRange;
 }
 
