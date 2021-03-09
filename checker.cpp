@@ -7,6 +7,8 @@ using namespace std;
 const string parameter[3] = { "temperature", "soc", "charge"};
 bool isValueOutOfRange (float value, float min, float max, int index_param)
 {
+  bool minValueWarningCheck = (value < (5/100 * min + min));
+  bool maxValueWarningCheck = (value > (5/100 * max + max))
   bool valueOutOfRange = (value < min) || (value > max);
   if(valueOutOfRange)
   {
