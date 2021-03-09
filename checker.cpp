@@ -7,9 +7,18 @@ using namespace std;
 const string parameter[3] = { "temperature", "soc", "charge"};
 bool isValueOutOfRange (float value, float min, float max, int index_param)
 {
-  bool minValueWarningCheck = (value < (5/100 * min + min));
-  bool maxValueWarningCheck = (value > (5/100 * max + max));
   bool valueOutOfRange = (value < min) || (value > max);
+  bool minValueWarningCheck = (value < (5/100 * min + min) && !valueOutOfRange);
+  bool maxValueWarningCheck = (value > (5/100 * max + max) && !valueOutOfRange);
+  if(minValueWarningCheck)
+  {
+    cout << parameter[index_param] << "is about to reach the minimum limit "<<endl;
+  }
+  if(maxValueWarningCheck)
+  {
+    cout << parameter[index_param] << "is about to reach the maximum limit "<<endl;
+  }
+  
   if(valueOutOfRange)
   {
     cout << parameter[index_param] << "is out of range "<<endl;
