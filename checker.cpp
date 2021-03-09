@@ -52,10 +52,10 @@ bool batteryIsOk(float temperature, float soc, float chargeRate, string s)
 int main() 
 {
   assert(batteryIsOk(25.0F, 70.0F, 0.7F, language[0]) == true);  // all okay
-  assert(batteryIsOk(50.0F, 85.0F, 0.0F) == false); // temp and soc high
-  assert(batteryIsOk(50.0F, 65.0F, 0.0F) == false); // temp high
-  assert(batteryIsOk(-50.0F, 80.0F, 0.0F) == false); // temp low
-  assert(batteryIsOk(40.0F, 15.0F, 0.0F) == false); // soc low
-  assert(batteryIsOk(40.0F, 85.0F, 0.0F) == false); // soc high
-  assert(batteryIsOk(40.0F, 65.0F, 0.81F) == false); // charge rate high
+  assert(batteryIsOk(50.0F, 85.0F, 0.0F,language[1]) == false,); // temp and soc high
+  assert(batteryIsOk(50.0F, 65.0F, 0.0F,language[0]) == false); // temp high
+  assert(batteryIsOk(-50.0F, 80.0F, 0.0F,language[1]) == false); // temp low
+  assert(batteryIsOk(40.0F, 15.0F, 0.0F,language[0]) == false); // soc low
+  assert(batteryIsOk(40.0F, 85.0F, 0.0F,language[1]) == false); // soc high
+  assert(batteryIsOk(40.0F, 65.0F, 0.81F,language[0]) == false); // charge rate high
 }
