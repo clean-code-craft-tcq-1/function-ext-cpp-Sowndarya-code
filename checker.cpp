@@ -6,6 +6,8 @@ using namespace std;
 
 const string parameter[3] = { "temperature", "soc", "charge"};
 
+string language[2] = {"English", "German"};
+
 void warningCheck(float value, float min, float max, int index_param)
 {
   bool minValueWarningCheck = (value < (5/100 * min + min));
@@ -20,7 +22,7 @@ void warningCheck(float value, float min, float max, int index_param)
   }
 }
 
-bool isValueOutOfRange (float value, float min, float max, int index_param)
+bool isValueOutOfRange (float value, float min, float max, int index_param, string s)
 {
   bool valueOutOfRange = (value < min) || (value > max); 
   if(valueOutOfRange)
@@ -36,22 +38,22 @@ bool isValueOutOfRange (float value, float min, float max, int index_param)
 }
 
 
-bool batteryIsOk(float temperature, float soc, float chargeRate) 
+bool batteryIsOk(float temperature, float soc, float chargeRate, string s) 
 {
-  bool tempCheck = isValueOutOfRange(temperature , 0.0F, 45.0, 0);
-  bool socCheck = isValueOutOfRange(soc , 20.0, 80.0F, 1);
-  bool chargeCheck = isValueOutOfRange(chargeRate, 0.0F, 0.8F, 2);
+  bool tempCheck = isValueOutOfRange(temperature , 0.0F, 45.0, 0, s);
+  bool socCheck = isValueOutOfRange(soc , 20.0, 80.0F, 1, s);
+  bool chargeCheck = isValueOutOfRange(chargeRate, 0.0F, 0.8F, 2, s);
   bool batteryIsNotOkay = tempCheck || socCheck || chargeCheck;
   return !batteryIsNotOkay;
 }
 
 int main() 
 {
-  assert(batteryIsOk(25.0F, 70.0F, 0.7F) == true);  // all okay
-  assert(batteryIsOk(50.0F, 85.0F, 0.0F) == false); // temp and soc high
-  assert(batteryIsOk(50.0F, 65.0F, 0.0F) == false); // temp high
-  assert(batteryIsOk(-50.0F, 80.0F, 0.0F) == false); // temp low
-  assert(batteryIsOk(40.0F, 15.0F, 0.0F) == false); // soc low
-  assert(batteryIsOk(40.0F, 85.0F, 0.0F) == false); // soc high
-  assert(batteryIsOk(40.0F, 65.0F, 0.81F) == false); // charge rate high
+  assert(batteryIsOk(25.0F, 70.0F, 0.7F, English) == true);  // all okay
+  //assert(batteryIsOk(50.0F, 85.0F, 0.0F) == false); // temp and soc high
+  //assert(batteryIsOk(50.0F, 65.0F, 0.0F) == false); // temp high
+  //assert(batteryIsOk(-50.0F, 80.0F, 0.0F) == false); // temp low
+  //assert(batteryIsOk(40.0F, 15.0F, 0.0F) == false); // soc low
+  //assert(batteryIsOk(40.0F, 85.0F, 0.0F) == false); // soc high
+  //assert(batteryIsOk(40.0F, 65.0F, 0.81F) == false); // charge rate high
 }
