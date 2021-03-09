@@ -1,19 +1,25 @@
 
 #include <assert.h>
+#include <string.h>
 #include <iostream>
 using namespace std;
 
-bool isValueOutOfRange (float value, float min, float max)
+const string parameter[3] = { "temperature", "soc", "charge"};
+bool isValueOutOfRange (float value, float min, float max, int index_param)
 {
   bool valueOutOfRange = (value < min) || (value > max);
+  if(valueOutOfRange)
+  {
+    cout << parameter[index_param] << is out of range <<;
+  }
   return valueOutOfRange;
 }
 
 bool batteryIsOk(float temperature, float soc, float chargeRate) 
 {
-  bool tempCheck = isValueOutOfRange(temperature , 0.0F, 45.0);
-  bool socCheck = isValueOutOfRange(soc , 20.0, 80.0F);
-  bool chargeCheck = isValueOutOfRange(chargeRate, 0.0F, 0.8F);
+  bool tempCheck = isValueOutOfRange(temperature , 0.0F, 45.0, 0);
+  bool socCheck = isValueOutOfRange(soc , 20.0, 80.0F, 1);
+  bool chargeCheck = isValueOutOfRange(chargeRate, 0.0F, 0.8F, 2);
   bool batteryIsNotOkay = tempCheck || socCheck || chargeCheck;
   return !batteryIsNotOkay;
 }
