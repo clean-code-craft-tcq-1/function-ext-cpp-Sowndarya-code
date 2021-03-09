@@ -7,9 +7,23 @@ using namespace std;
 const string parameter[3] = { "temperature", "soc", "charge"};
 bool isValueOutOfRange (float value, float min, float max, int index_param)
 {
-  bool valueOutOfRange = (value < min) || (value > max);
-  bool minValueWarningCheck = (value < (5/100 * min + min) && !valueOutOfRange);
-  bool maxValueWarningCheck = (value > (5/100 * max + max) && !valueOutOfRange);
+  bool valueOutOfRange = (value < min) || (value > max); 
+  if(valueOutOfRange)
+  {
+    cout << parameter[index_param] << "is out of range "<<endl;
+  }
+  else
+  {
+    cout << parameter[index_param] << "is okay "<<endl;
+    warningCheck(value, min, max, index_param);
+  }
+  return valueOutOfRange;
+}
+
+void warningCheck(float value, float min, float max, int index_param)
+{
+  bool minValueWarningCheck = (value < (5/100 * min + min));
+  bool maxValueWarningCheck = (value > (5/100 * max + max));
   if(minValueWarningCheck)
   {
     cout << parameter[index_param] << "is about to reach the minimum limit "<<endl;
@@ -18,18 +32,7 @@ bool isValueOutOfRange (float value, float min, float max, int index_param)
   {
     cout << parameter[index_param] << "is about to reach the maximum limit "<<endl;
   }
-  
-  if(valueOutOfRange)
-  {
-    cout << parameter[index_param] << "is out of range "<<endl;
-  }
-  else
-  {
-    cout << parameter[index_param] << "is okay "<<endl;
-  }
-  return valueOutOfRange;
 }
-
 bool batteryIsOk(float temperature, float soc, float chargeRate) 
 {
   bool tempCheck = isValueOutOfRange(temperature , 0.0F, 45.0, 0);
