@@ -27,11 +27,13 @@ bool isValueOutOfRange (float value, float min, float max, int index_param, stri
   bool valueOutOfRange = (value < min) || (value > max); 
   if(valueOutOfRange)
   {
-    (s==language[2])?cout << parameter[index_param] << "is out of range "<<endl:cout << parameter[index_param] << "is out of range "<<endl;
+    cout << parameter[index_param] << "is out of range "<<endl
+   //(s==language[0])?cout << parameter[index_param] << "is out of range "<<endl:cout << parameter[index_param] << "ist aerata "<<endl;
   }
   else
   {
     cout << parameter[index_param] << "is okay "<<endl;
+   //(s==language[0])?cout << parameter[index_param] << "is okay "<<endl:cout << parameter[index_param] << "ist ok "<<endl;
     warningCheck(value, min, max, index_param);
   }
   return valueOutOfRange;
@@ -50,10 +52,10 @@ bool batteryIsOk(float temperature, float soc, float chargeRate, string s)
 int main() 
 {
   assert(batteryIsOk(25.0F, 70.0F, 0.7F, language[0]) == true);  // all okay
-  //assert(batteryIsOk(50.0F, 85.0F, 0.0F) == false); // temp and soc high
-  //assert(batteryIsOk(50.0F, 65.0F, 0.0F) == false); // temp high
-  //assert(batteryIsOk(-50.0F, 80.0F, 0.0F) == false); // temp low
-  //assert(batteryIsOk(40.0F, 15.0F, 0.0F) == false); // soc low
-  //assert(batteryIsOk(40.0F, 85.0F, 0.0F) == false); // soc high
-  //assert(batteryIsOk(40.0F, 65.0F, 0.81F) == false); // charge rate high
+  assert(batteryIsOk(50.0F, 85.0F, 0.0F) == false); // temp and soc high
+  assert(batteryIsOk(50.0F, 65.0F, 0.0F) == false); // temp high
+  assert(batteryIsOk(-50.0F, 80.0F, 0.0F) == false); // temp low
+  assert(batteryIsOk(40.0F, 15.0F, 0.0F) == false); // soc low
+  assert(batteryIsOk(40.0F, 85.0F, 0.0F) == false); // soc high
+  assert(batteryIsOk(40.0F, 65.0F, 0.81F) == false); // charge rate high
 }
